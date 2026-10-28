@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette inspirée des bâches de cérémonie : indigo, blanc, safran pour l'argent dû. */
+:root {
+  --indigo: #22337a;
+  --indigo-soft: #e8ebf7;
+  --paper: #f5f7fb;
+  --surface: #ffffff;
+  --ink: #18203a;
+  --muted: #5b6380;
+  --line: #d9ddea;
+  --saffron: #d9950f;
+  --saffron-soft: #fdf3dd;
+  --green: #1d7a4c;
+  --green-soft: #e3f3ea;
+  --red: #b42318;
+  --red-soft: #fdecea;
+  --radius-sm: 6px;
+  --radius-lg: 14px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family:
+    "Schibsted Grotesk",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.num,
+td,
+dd {
+  font-variant-numeric: tabular-nums;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+}
+
+/* Bord de bâche : la signature visuelle de l'application. */
+.awning {
+  height: 12px;
+  background: repeating-linear-gradient(90deg, var(--indigo) 0 28px, var(--saffron) 28px 56px);
+  -webkit-mask: radial-gradient(circle 14px at 50% -2px, #000 99%, transparent) 0 0 / 28px 12px
+    repeat-x;
+  mask: radial-gradient(circle 14px at 50% -2px, #000 99%, transparent) 0 0 / 28px 12px repeat-x;
+}
+
+/* Champs */
+input,
+select,
+textarea {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  width: 100%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 16px; /* évite le zoom automatique sur iPhone */
+  margin-top: 4px;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--indigo) 45%, transparent);
+  outline-offset: 2px;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+legend {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Boutons */
+button,
+.btn {
+  background: var(--indigo);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 44px;
+}
+button:hover,
+.btn:hover {
+  background: #1a2861;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--indigo);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover {
+  background: var(--indigo-soft);
+}
+.btn-danger {
+  background: var(--red);
+}
+.btn-danger:hover {
+  background: #8f1c13;
+}
+
+a {
+  color: var(--indigo);
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Panneaux : une seule forme pour les blocs de contenu */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+@media (min-width: 640px) {
+  .panel {
+    padding: 20px;
+  }
+}
+
+/* Tableaux : défilement horizontal dans leur cadre sur téléphone */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.panel .table-wrap {
+  border: 0;
+  border-radius: 0;
+  margin: 0 -4px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+th,
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--paper);
+}
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+td.amount,
+th.amount {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Messages */
+.flash {
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-weight: 500;
+}
+.flash-error {
+  background: var(--red-soft);
+  color: var(--red);
+}
+.flash-ok {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+/* Statuts */
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-confirmed {
+  background: var(--indigo-soft);
+  color: var(--indigo);
+}
+.badge-out {
+  background: var(--saffron-soft);
+  color: #8a5d00;
+}
+.badge-completed {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.badge-cancelled {
+  background: #eef0f4;
+  color: var(--muted);
+}
+.due {
+  color: #8a5d00;
+  font-weight: 700;
+}
+.settled {
+  color: var(--green);
+  font-weight: 700;
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--indigo);
+  font-weight: 600;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
